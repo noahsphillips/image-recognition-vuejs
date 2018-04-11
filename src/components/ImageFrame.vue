@@ -50,7 +50,7 @@
 <script>
 
   import * as axios from 'axios';
-  const BASE_URL = process.env.API_URL || 'http://localhost:8000';
+  const BASE_URL = process.env.API_URL;
   const STATUS_INITIAL = 0, STATUS_SAVING = 1, STATUS_SUCCESS = 2, STATUS_FAILED = 3;
 
   export default {
