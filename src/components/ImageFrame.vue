@@ -111,7 +111,7 @@
                     var uploadURL = response.data.url;
                     var options = {
                         headers: {
-                            'Content-Type': theFile.type.fileName
+                            'Content-Type': theFile.type.fileName,
                             'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTI1OTcxODkzfQ.T809X9ZfgwkAN8T7AKIPTigyRsM8AnTX6ZcTU4eJkjs'
                         }
                     };
