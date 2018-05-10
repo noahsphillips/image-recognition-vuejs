@@ -75,8 +75,8 @@
             for (var i = 0; i < files.length; i++) {
                 var file = files.item(i);
                 var theFile = {
-                    file_name:file.name.split(' ').join('_'),
-                    file_type:file.type,
+                    fileName:file.name.split(' ').join('_'),
+                    fileType:file.type,
                     fileSize:file.size,
                     fileIndex: i
                 };
@@ -105,21 +105,19 @@
         },
         doFileUpload(file, theFile, fileIndex) {
             return new Promise((resolve, reject) => {
-                axios.post(`https://athlete-beat-api.herokuapp.com/photos/sign`, file).then((response) => {
+                axios.post(`${BASE_URL}/photos/sign`, file).then((response) => {
                     console.log(response);
                     var theFileName = response.data.fileName;
                     var uploadURL = response.data.url;
                     var options = {
                         headers: {
-                            'Content-Type': theFile.type.fileName,
-                            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTI1OTcxODkzfQ.T809X9ZfgwkAN8T7AKIPTigyRsM8AnTX6ZcTU4eJkjs'
+                            'Content-Type': theFile.type
                         }
                     };
-                    axios.put(response.data.signedUrl,theFile,options).then((response) => {
-                        console.log(response)
-                        // this.doRecognition(theFileName, fileIndex).then(() => {
-                        //     resolve(true)
-                        // });
+                    axios.put(response.data.signedRequest,theFile,options).then((response) => {
+                        this.doRecognition(theFileName, fileIndex).then(() => {
+                            resolve(true)
+                        });
                     });
                 }).catch((err) => {
                     resolve(false);
